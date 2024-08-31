@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Registry</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/ocr.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+  <main>
+    <div class="container mt-3">
+      <h1 class="text-center">Medicine Registry</h1>
+
+      <!-- Upload Form -->
+      <form id="upload-form" method="POST" action="/upload" enctype="multipart/form-data" class="mt-4">
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <input type="file" name="image" id="file-1" class="inputfile inputfile-1 form-control" required>
+              <label for="file-1" class="btn btn-primary mt-2">Choose a file&hellip;</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8">
+            <button type="submit" class="btn btn-success">Upload and Recognize Text</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Display the Selected Image -->
+      <div class="row mt-4">
+        <div class="col-12 col-md-6">
+          <div class="image-container">
+            <img id="selected-image"  class="img-fluid" alt="Selected Image">
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div id="log">
+            <p>Data will be stored after OCR processing...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    document.getElementById("file-1").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById("selected-image").src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>

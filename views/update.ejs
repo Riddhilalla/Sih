@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Inventory</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to your CSS file if needed -->
+</head>
+<body>
+    <h1>Inventory Update</h1>
+    
+    <!-- Display inventory details -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Batch Number</th>
+                <th>Expiry Date</th>
+                <th>Storage Conditions</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% inventory.forEach(medicine => { %>
+                <tr>
+                    <td><%= medicine.name %></td>
+                    <td><%= medicine.batchNumber %></td>
+                    <td><%= medicine.expiryDate ? new Date(medicine.expiryDate).toDateString() : 'N/A' %></td>
+                    <td><%= medicine.storageConditions %></td>
+                    <td><%= medicine.quantity %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Display JavaScript alerts for alerts passed from server -->
+    <script>
+         if (alerts && alerts.length > 0) { 
+            alerts.forEach(alert => { 
+                alert("<%= alert %>");
+             }) 
+         } 
+    </script>
+</body>
+</html>
